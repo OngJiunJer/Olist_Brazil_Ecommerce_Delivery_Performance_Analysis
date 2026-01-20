@@ -47,6 +47,58 @@ Using **SQL for data preparation** and **Power BI for visualization**, the proje
 - Trend, distribution, and comparison analysis
 
 ---
+## SQL Code Included
+
+### order_delivery_performance.sql (Q1)
+- Calculates delivery duration (delivery_days) from "order_purchase_timestamp" to "order_delivered_customer_date".
+- Checks min, max, and average to detect outliers.
+- Joins orders with customer location (city, state) for regional analysis.
+- Applies 99th percentile (P99) to remove extreme delivery delays.
+- Aggregates data by:
+  - Customer state (year + month) → regional performance
+  - Year and month → delivery trends over time
+- Includes only groups with ≥100 orders for reliability.
+- Removed "order_status" not equal to "delivered".
+- Supports logistics evaluation, trend monitoring, and regional comparison.
+
+### seller_deliver_performance.sql (Q2)
+- Merges "order", "sellers", and "order_items" table to calculate how early sellers send orders to carriers (carrier_received_early_days).
+- Performs basic checks (min, max, average) to detect outliers.
+- Applies percentile filtering (p01–p99) to remove extreme "carrier_received_early_days" values.
+- Aggregates data by:
+  - Seller level → identify the 10 fastest and slowest sellers
+  - Seller-state level → regional seller performance
+  - Year-month level → seller trend over time
+- Calculates metrics:
+  - Average early days, earliest/late order counts, and early/late rates
+- Filters out low-volume sellers (≥100 orders for reliability; ≥50 for regional aggregation).
+- Optional cleanup: drops temporary tables to maintain a clean workspace.
+- Supports logistics monitoring, seller ranking, and operational improvement insights.
+
+### delay_report.sql (Q3)
+- Merges "orders" and "customers" tables to calculate "delay_days" for each state.
+- Creates is_delay flag: 1 → delayed, 0 → on-time.
+- Performs basic checks (min, max, average) and applies percentile filtering (p01–p99) to remove extreme "delay_days" values.
+- Aggregates data by:
+  - State level → identify regions with the highest delay rates
+  - City level → top cities with frequent delays
+  - Time level (month-year) → track delay trends over time
+- Calculates metrics:
+  - Total orders, total delayed orders, delay rate, and average delay days
+- Filters out groups with <100 total orders for statistical reliability.
+- Supports regional logistics monitoring, operational improvement, and trend analysis.
+
+### review_score_performance_when_delay.sql (Q4)
+- Creates a view combining "order_reviews" with "orders".
+- Calculates delivery delay (delay_days) and flags delayed orders (is_delay = 1 → delayed, 0 → on-time).
+- Aggregates data by delay status, year, and month to analyze the impact on customer satisfaction.
+  - Metrics calculated:
+  - Total orders and average delay days
+  - Average review score
+- Count and percentage of each review score (1–5)
+- Supports analysis of whether slower deliveries correlate with lower review scores, helping link operational performance to customer satisfaction.
+
+---
 
 ## 📈 Dashboards Included
 
