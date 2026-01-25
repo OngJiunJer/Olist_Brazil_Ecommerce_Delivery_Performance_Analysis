@@ -123,6 +123,9 @@ Using **SQL for data preparation** and **Power BI for visualization**, the proje
 - Review score distribution
 - Customer satisfaction impact analysis
 
+### 📄 Full report (PDF):  
+👉 [Download / View PDF](reports/olist_dashboard.pdf)
+
 ---
 
 ## 🔍 Key Insights
