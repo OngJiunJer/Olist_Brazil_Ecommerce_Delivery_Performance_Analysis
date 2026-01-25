@@ -123,7 +123,7 @@ Using **SQL for data preparation** and **Power BI for visualization**, the proje
 - Review score distribution
 - Customer satisfaction impact analysis
 
-### 📄 Full report (PDF):  
+### 📄 Dashboards (PDF):  
 👉 [Download / View PDF](Olist_Brazil_Ecommerce_Delivery_Performance_Dashboard.pdf)
 
 ---
